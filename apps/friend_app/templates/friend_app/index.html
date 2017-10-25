@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+      <center><h1>Welcome, {{request.session.first_name}}</h1></center>
+      <center><a href="/logout">Logout</a></center>
+      <h3>Here is a list of your friends:</h3>
+      <table border 1px>
+          <thead>
+              <tr>
+                  <th>Alias:</th>
+                  <th>Actions:</th>
+              </tr>
+              {%if friends%}
+                {%for friend in friends%}
+              <tr>
+                  <td>{{friend.last_name}}</td>
+                  <td><a href="/friend/showFriend/{{friend.id}}">View Profile</a> |  <a href="/friend/remFriend/{{friend.id}}">Remove as Friend</a></td>
+              </tr>
+                {% endfor %}
+                {%else%}
+                    <h3>You don't have friends yet!</h3>
+                {%endif%}
+             
+          </thead>
+      </table>
+      <h3>Other Users not on your friends list:</h3>
+      <table border 1px>
+        <thead>    
+            <tr>
+                <th>Alias:</th>
+                <th>|---------Action: ----------|</th>
+            </tr>
+            {%for user in users%}
+            <tr>
+                <td><a href="/friend/show/{{user.id}}">{{user.last_name}}</a></td>
+                <td><button type="button"><a href="/friend/addFriend/{{user.id}}">Add Friend</a></button></td>
+            </tr>
+            {%endfor%}
+        </thead>
+    </table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <h3>Register Here</h3>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form action='/register' method="post">
+            {% csrf_token %}
+            <p>Name:<input type="text" name="first_name" placeholder="Enter first name"><br></p>
+            <p>Alias:<input type="text" name="last_name" placeholder="Enter Your Alias"><br></p>
+            <p>Email:<input type="text" name="email" placeholder="Enter email"><br></p>
+            <p>Birthday:<input type="date" ><br></p>
+            *Password should be atleast 8 Characters
+            <p>Password:<input type="text" name="password" placeholder="Enter password"><br></p>
+            <p>Confirm PW:<input type="text" name="c_password" placeholder="Confirm password"><br></p>
+            <input type="submit" value="Register here."><br>
+        </form>
+
+
+        
+        <h3>Login Here</h3>
+        <form action='/login' method="post">
+            {% csrf_token %}
+            <input type="text" name="email" placeholder="Enter email"><br>
+            <input type="text" name="password" placeholder="Enter password"><br>
+            <input type="submit" value="Login here."><br>
+        </form>
+
+
+</body>
+</html>
